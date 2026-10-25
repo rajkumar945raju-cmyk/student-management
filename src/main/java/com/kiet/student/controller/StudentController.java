@@ -1,7 +1,7 @@
-package com.kiet.api.controller;
+package com.kiet.student.controller;
 
-import com.kiet.api.model.Student;
-import com.kiet.api.service.StudentService;
+import com.kiet.student.model.Student;
+import com.kiet.student.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +24,7 @@ public class StudentController {
     @GetMapping("/{id}")
     public Student getStudentById(@PathVariable int id) {
         return studentService.getStudentById(id);
+
 
     }
 
@@ -54,5 +55,24 @@ public class StudentController {
             return  "Student not found with ID: " + id;
         }
 
+
     }
+    @GetMapping("/search")
+    public List<Student> searchStudents(
+            @RequestParam String branch,
+            @RequestParam String year) {
+
+        return studentService.searchByBranchAndYear(branch, year);
+    }
+
+    @GetMapping("/topper")
+    public List<Student> searchByCgpa(@RequestParam double cgpa) {
+      //  return studentService.searchByCgpa(cgpa);
+       return studentService.searchByMinimumCgpa(cgpa);
+    }
+
+//    @GetMapping("/search/cgpa/min")
+//    public List<Student> searchByMinimumCgpa(@RequestParam double cgpa) {
+//        return studentService.searchByMinimumCgpa(cgpa);
+//    }
 }
