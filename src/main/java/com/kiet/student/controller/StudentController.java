@@ -75,4 +75,5 @@ public class StudentController {
 //    public List<Student> searchByMinimumCgpa(@RequestParam double cgpa) {
 //        return studentService.searchByMinimumCgpa(cgpa);
 //    }
+    
 }
